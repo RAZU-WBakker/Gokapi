@@ -19,7 +19,7 @@
 		  <div class="row">
 			  <div class="form-group col">
 				<input class="form-check-input" type="checkbox" name="enableDownloadLimit" id="enableDownloadLimit" onchange="checkBoxChanged(this, 'allowedDownloads')" value="" aria-label="Enable Download Limit" checked>
-	     			<label class="control-label small" for="allowedDownloads">Limit Downloads</label>
+	     			<label class="control-label small" for="allowedDownloads">Aantal downloads beperken</label>
 				<div class="input-group mb-3">
 					<input type="number" class="form-control admin-input" value="1" name="allowedDownloads" id="allowedDownloads" min="1" style="text-align: right;">
 	  				<span class="input-group-text">Downloads</span>
@@ -28,16 +28,16 @@
   			 <div class="break"></div>
 	   		 <div class="form-group col">
 				<input class="form-check-input" type="checkbox" name="enableTimeLimit" id="enableTimeLimit" onchange="checkBoxChanged(this, 'expiryDays')" value="" aria-label="Enable Time Limit" checked>
-	     			<label class="control-label  small" for="expiryDays">Expiry</label>
+	     			<label class="control-label  small" for="expiryDays">Verloopt na</label>
 				<div class="input-group mb-3">
 					<input type="number" class="form-control admin-input" value="14" name="expiryDays" id="expiryDays" min="1" style="text-align: right;">
-	  				<span class="input-group-text">Days</span>
+	  				<span class="input-group-text">Dagen</span>
 				</div>
 			 </div>
   			 <div class="break"></div>
 	    		 <div class="form-group col">
 				<input class="form-check-input" type="checkbox" name="enablePassword" id="enablePassword" onchange="checkBoxChanged(this, 'password')" value="" aria-label="Enable Password Protection">
-	     			<label class="control-label  small" for="password">Password</label>
+	     			<label class="control-label  small" for="password">Wachtwoord</label>
 				<input class="form-control admin-input" value="" name="password" id="password" placeholder="None" disabled>
 			  </div>
 <div id="errordiv" class="alert alert-danger" style="display:none">
@@ -50,13 +50,13 @@
 			<table id="maintable" class="table table-dark">
 				<thead>
 					<tr>
-						<th scope="col" style="text-align: center;">Filename</th>
-						<th scope="col" style="text-align: center;">Size</th>
-						<th scope="col" style="text-align: center;">Downloads remaining</th>
-						<th scope="col" style="text-align: center;">Stored until</th>
+						<th scope="col" style="text-align: center;">Bestandsnaam</th>
+						<th scope="col" style="text-align: center;">Grootte</th>
+						<th scope="col" style="text-align: center;">Downloads over</th>
+						<th scope="col" style="text-align: center;">Opgeslagen tot</th>
 						<th scope="col" style="text-align: center;">Downloads</th>
 						<th scope="col" style="text-align: center;">ID</th>
-						<th scope="col" style="text-align: center; min-width:13em;">Actions</th>
+						<th scope="col" style="text-align: center; min-width:13em;">Acties</th>
 					</tr>
 				</thead>
 				<tbody id="downloadtable">
@@ -68,12 +68,12 @@
 						<td id="cell-name-{{ .Id }}">{{ .Name }}</td>
 						<td data-order="{{ .SizeBytes }}">{{ .Size }}</td>
 				{{ if .UnlimitedDownloads }}
-						<td>Unlimited</td>
+						<td>Onbeperkt</td>
 				{{ else }}
 						<td id="cell-downloadsRemaining-{{ .Id }}">{{ .DownloadsRemaining }}</td>
 				{{ end }}
 				{{ if .UnlimitedTime }}
-						<td>Unlimited</td>
+						<td>Onbeperkt</td>
 				{{ else }}
 						<td>{{ .ExpireAtString }}</td>
 				{{ end }}
@@ -108,8 +108,8 @@
 
 	<div id="toastnotification" class="toastnotification" data-default="URL copied to clipboard">Toast Text</div>
 	<div id="toastnotificationUndo" class="toastnotification">
-	  File deleted: <span id="toastFilename"></span>
-  	   <span id="toastUndoButton" class="toast-undo" onclick="handleUndo(this)">Restore</span>
+	  Bestand verwijderd: <span id="toastFilename"></span>
+  	   <span id="toastUndoButton" class="toast-undo" onclick="handleUndo(this)">Herstellen</span>
 	</div>
 	<div id="qroverlay">
 	  <div id="qrcode"></div>
@@ -142,8 +142,8 @@
 		} ],
 	    "paging": false,
 	    "language": {
-	      "info": "Files stored: _TOTAL_",
-	      "emptyTable": "No files stored yet",
+	      "info": "Bestanden opgeslagen: _TOTAL_",
+	      "emptyTable": "Nog geen bestanden opgeslagen",
 	      "infoEmpty": "",
 	    }
 	    });
@@ -229,7 +229,7 @@
 			    <li style="cursor: pointer;"><a class="dropdown-item copyurl" title="Copy hotlink" onclick="showToast(1000)"
 			    	data-clipboard-text="{{ .CurrentFile.UrlHotlink }}"><i class="bi bi-copy"></i> Hotlink</a></li>
 		{{ else }}
-			    <li><a class="dropdown-item disabled">Hotlink not available</a></li>
+			    <li><a class="dropdown-item disabled">Hotlink niet beschikbaar</a></li>
 	{{ end }}
 			</ul>
 {{ end }}
@@ -242,7 +242,7 @@
 			<ul class="dropdown-menu dropdown-menu-end" data-bs-theme="dark" >
 			    <li style="cursor: pointer;"><a class="dropdown-item" id="qrcode-{{ .CurrentFile.Id }}" title="Open QR Code" class="btn btn-outline-light btn-sm" onclick="showQrCode('{{ .CurrentFile.UrlDownload }}');"><i class="bi bi-qr-code"></i> QR Code</a></li>
 			    <li style="cursor: pointer;"><a class="dropdown-item" id="email-{{ .CurrentFile.Id }}" href="mailto:?body={{ .CurrentFile.UrlDownload | urlquery}}"
-			       target="_blank" title="Share via email" class="btn btn-outline-light btn-sm"><i class="bi bi-envelope"></i> Email</a></li>
+			       target="_blank" title="Deel via e-mail" class="btn btn-outline-light btn-sm"><i class="bi bi-envelope"></i> E-mail</a></li>
 			</ul>
 {{ end }}
 
@@ -252,43 +252,43 @@
 	  <div class="modal-dialog  modal-lg gokapi-dialog">
 	    <div class="modal-content gokapi-dialog">
 	      <div class="modal-header">
-		<h1 class="modal-title fs-5" id="m_filenamelabel">Filename</h1>
+		<h1 class="modal-title fs-5" id="m_filenamelabel">Bestandsnaam</h1>
 	      </div>
 	      <div class="modal-body">
 		<div class="input-group mb-3">
 		  <div class="input-group-text">
-      			<input type="checkbox" id="mc_download"  checked aria-label="Limit downloads" title="Limit downloads"  data-toggle-target="mi_edit_down" onchange="handleEditCheckboxChange(this)">
+      			<input type="checkbox" id="mc_download"  checked aria-label="Limit downloads" title="Beperk downloads"  data-toggle-target="mi_edit_down" onchange="handleEditCheckboxChange(this)">
    		 </div>
-		  <span class="input-group-text" id="edit_down">Limit Downloads</span>
+		  <span class="input-group-text" id="edit_down">Beperk downloads</span>
 		  <input type="number" min="1" id="mi_edit_down" class="form-control" aria-label="Downloads Remaining" aria-describedby="edit_down">
 		</div>
 		<div class="input-group mb-3">
 		  <div class="input-group-text">
-      			<input id="mc_expiry" type="checkbox" checked aria-label="Expire files" title="Expire files"  data-toggle-target="mi_edit_expiry" data-timestamp="" onchange="handleEditCheckboxChange(this)">
+      			<input id="mc_expiry" type="checkbox" checked aria-label="Verloopt na" title="Verloopt na"  data-toggle-target="mi_edit_expiry" data-timestamp="" onchange="handleEditCheckboxChange(this)">
    		 </div>
-		  <span class="input-group-text" id="edit_expdate">Expiry&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		  <span class="input-group-text" id="edit_expdate">Verloopt na&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		  <input type="text" id="mi_edit_expiry" class="form-control" aria-label="Expiry" aria-describedby="edit_expdate">
 		</div>
 		<div class="input-group mb-3">
 		  <div class="input-group-text">
-      			<input type="checkbox" id="mc_password" aria-label="Require password" title="Require password" data-toggle-target="mi_edit_pw" onchange="handleEditCheckboxChange(this)">
+      			<input type="checkbox" id="mc_password" aria-label="Wachtwoord vereist" title="Wachtwoord vereist" data-toggle-target="mi_edit_pw" onchange="handleEditCheckboxChange(this)">
    		 </div>
-		  <span class="input-group-text" id="edit_pw">Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		  <span class="input-group-text" id="edit_pw">Wachtwoord&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		  <input type="text" id="mi_edit_pw" class="form-control" aria-label="Password" disabled onclick="selectTextForPw(this)" aria-describedby="edit_pw">
 		</div>
 		
 	      <div class="input-group mb-3" id="replaceGroup">
 		  <div class="input-group-text">
-		    <input type="checkbox" id="mc_replace" aria-label="Replace file content" title="Replace file content" data-toggle-target="mi_edit_replace" onchange="handleEditCheckboxChange(this)">
+		    <input type="checkbox" id="mc_replace" aria-label="Bestand vervangen" title="Bestand vervangen" data-toggle-target="mi_edit_replace" onchange="handleEditCheckboxChange(this)">
 		  </div>
-		  <span class="input-group-text" id="edit_replace">Replace Content&nbsp;&nbsp;</span>
-		  <select id="mi_edit_replace" class="form-select" aria-label="Replace File Content" disabled>
+		  <span class="input-group-text" id="edit_replace">Bestand vervangen&nbsp;&nbsp;</span>
+		  <select id="mi_edit_replace" class="form-select" aria-label="Bestand vervangen" disabled>
 		  </select>
 		</div>
 	      </div>
 	      <div class="modal-footer">
-		<button type="button" class="btn btn-outline-light"  aria-label="Close" data-bs-dismiss="modal">Close</button>
-		<button type="button" class="btn btn-primary" data-fileid="" id="mb_save" onclick="editFile();">Save changes</button>
+		<button type="button" class="btn btn-outline-light"  aria-label="Sluiten" data-bs-dismiss="modal">Sluiten</button>
+		<button type="button" class="btn btn-primary" data-fileid="" id="mb_save" onclick="editFile();">Opslaan</button>
 	      </div>
 	    </div>
 	  </div>

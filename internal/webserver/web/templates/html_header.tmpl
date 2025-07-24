@@ -40,12 +40,12 @@
 {{ else }}
    {{ if .IsDownloadView }}
        {{ if .IsPasswordView }}
-          <title>{{.PublicName}}: Password required</title>
+          <title>{{.PublicName}}: Wachtwoord vereist</title>
 	  <meta name="title" content="{{.PublicName}}">
-    	  <meta name="description" content="Password required">
+    	  <meta name="description" content="Wachtwoord vereist">
     	  
     	  <meta property="og:title" content="{{.PublicName}}"/>
-  	  <meta property="og:description" content="Password required"/>
+  	  <meta property="og:description" content="Wachtwoord vereist"/>
        {{ else }}
           <title>{{.PublicName}}: {{.Name}}</title>
 	  <meta name="title" content="{{.PublicName}}: {{.Name}}">
@@ -78,13 +78,13 @@
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link {{ if eq .ActiveView 0}}active{{ end }}" href="./admin">Upload</a>
             {{ if .ActiveUser.HasPermissionManageLogs }}
-            <a class="nav-link {{ if eq .ActiveView 1 }}active{{ end }}" href="./logs">Logs</a>
+            <a class="nav-link {{ if eq .ActiveView 1 }}active{{ end }}" href="./logs">Logboeken</a>
             {{ end }}
             {{ if and .ActiveUser.HasPermissionManageUsers .IsUserTabAvailable }}
-            <a class="nav-link {{ if eq .ActiveView 3 }}active{{ end }}" href="./users">Users</a>
+            <a class="nav-link {{ if eq .ActiveView 3 }}active{{ end }}" href="./users">Gebruikers</a>
             {{ end }}
             <a class="nav-link {{ if eq .ActiveView 2 }}active{{ end }}" href="./apiKeys">API</a>
-            {{ if .IsLogoutAvailable }}<a class="nav-link" href="./logout">Logout</a>{{ end }}
+            {{ if .IsLogoutAvailable }}<a class="nav-link" href="./logout">Uitloggen</a>{{ end }}
           </nav>
         </div>
       </header>

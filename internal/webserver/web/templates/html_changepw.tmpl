@@ -3,22 +3,22 @@
         <div class="col">
 		<div id="container" class="card" style="width: 25em">
 		  <div class="card-body">
-		    <h2 class="card-title">Change Password</h2>
+		    <h2 class="card-title">Wachtwoord wijzigen</h2>
 		    <br>
-		    <p class="card-text"> A password change has been requested.<br>Please enter a new password.<br><br>
+		    <p class="card-text"> Wachtwoord wijzigen aangevraagd.<br>Voer een nieuw wachtwoord in.<br><br>
 			<form method="post" action="./changePassword" id="form" name="form" onSubmit="return submitForm()">
-				<input type="password" required minlength="{{.MinPasswordLength}}" placeholder="New Password" id="newpw" name="newpw" autocomplete="new-password">
+				<input type="password" required minlength="{{.MinPasswordLength}}" placeholder="Nieuw wachtwoord" id="newpw" name="newpw" autocomplete="new-password">
 				<br><br>
-				<input type="password" required minlength="{{.MinPasswordLength}}" placeholder="Confirm New Password" id="newpw_c" name="newpw_c" onchange="checkSame()" autocomplete="new-password">
+				<input type="password" required minlength="{{.MinPasswordLength}}" placeholder="Bevestig nieuw wachtwoord" id="newpw_c" name="newpw_c" onchange="checkSame()" autocomplete="new-password">
 				      
 {{ if ne .ErrorMessage "" }}
 				<p id="errormessage" style="color:red; margin-top:1em">{{.ErrorMessage}}</p>
 {{ end }}				      
 				      <div id="pwnotsame" class="text-warning" style="display: none; margin-top:1em">
-					Passwords do not match
+					Wachtwoorden komen niet overeen.
 				      </div>
 
-				<button style="margin-top:2em" type="submit" id="submitbutton" class="btn btn-light">Change Password</button>
+				<button style="margin-top:2em" type="submit" id="submitbutton" class="btn btn-light">Wijzigen</button>
 			</form>
 			<br>
 		  </div>

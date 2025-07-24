@@ -18,21 +18,21 @@
 		  </div>
 		</div>
 		
-                Please visit the <a target="_blank" href="./apidocumentation">API documentation</a> for more information about the API.<br>Click on the API key name to give it a new name. Permissions can be changed by clicking on them.
+                Toegang tot de API documentatie vind je <a target="_blank" href="./apidocumentation">hier</a>.<br>Klik op de API key naam om een nieuwe naam te geven. Rechten kunnen aangepast worden door op hen te klikken.
                 <br>
                 <br>
                 <div class="table-responsive">
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <th scope="col">Name</th>
+                                <th scope="col">Naam</th>
                                 <th scope="col">API Key</th>
-                                <th scope="col">Last Used</th>
-            			<th scope="col">Permissions</th>
+                                <th scope="col">Laatste gebruik</th>
+            			<th scope="col">Rechten</th>
 {{ if .ActiveUser.HasPermissionManageApi }}
-            			<th scope="col">User</th>
+            			<th scope="col">Gebruiker</th>
 {{ end }}
-                                <th scope="col">Actions</th>
+                                <th scope="col">Acties</th>
                             </tr>
                         </thead>
                         <tbody id="apitable">
@@ -47,18 +47,18 @@
 						<i id="perm_edit_{{ .PublicId }}" class="bi bi-pencil {{if not .HasPermissionEdit}}perm-notgranted{{else}}perm-granted{{end}}" title="Edit Uploads" onclick='changeApiPermission("{{ .PublicId }}","PERM_EDIT", "perm_edit_{{ .PublicId }}");'></i>
 						<i id="perm_delete_{{ .PublicId }}" class="bi bi-trash3 {{if not .HasPermissionDelete}}perm-notgranted{{else}}perm-granted{{end}}" title="Delete Uploads" onclick='changeApiPermission("{{ .PublicId }}","PERM_DELETE", "perm_delete_{{ .PublicId }}");'></i>
 						
-						<i id="perm_replace_{{ .PublicId }}" class="bi bi-recycle {{if not (index $.UserMap .UserId).HasPermissionReplace}}perm-unavailable perm-nochange{{ else }}{{if not .HasPermissionReplace}}perm-notgranted{{else}}perm-granted{{end}}{{end}}" title="Replace Uploads" onclick='changeApiPermission("{{ .PublicId }}","PERM_REPLACE", "perm_replace_{{ .PublicId }}");'></i>
+						<i id="perm_replace_{{ .PublicId }}" class="bi bi-recycle {{if not (index $.UserMap .UserId).HasPermissionReplace}}perm-unavailable perm-nochange{{ else }}{{if not .HasPermissionReplace}}perm-notgranted{{else}}perm-granted{{end}}{{end}}" title="Vervang uploads" onclick='changeApiPermission("{{ .PublicId }}","PERM_REPLACE", "perm_replace_{{ .PublicId }}");'></i>
 						
-						<i id="perm_users_{{ .PublicId }}" class="bi bi-people {{if not (index $.UserMap .UserId).HasPermissionManageUsers}}perm-unavailable perm-nochange{{ else }}{{if not .HasPermissionManageUsers}}perm-notgranted{{else}}perm-granted{{end}}{{end}}" title="Manage Users" onclick='changeApiPermission("{{ .PublicId }}","PERM_MANAGE_USERS", "perm_users_{{ .PublicId }}");'></i>
+						<i id="perm_users_{{ .PublicId }}" class="bi bi-people {{if not (index $.UserMap .UserId).HasPermissionManageUsers}}perm-unavailable perm-nochange{{ else }}{{if not .HasPermissionManageUsers}}perm-notgranted{{else}}perm-granted{{end}}{{end}}" title="Beheer gebruikers" onclick='changeApiPermission("{{ .PublicId }}","PERM_MANAGE_USERS", "perm_users_{{ .PublicId }}");'></i>
 						
-						<i id="perm_logs_{{ .PublicId }}" class="bi bi-card-list {{if not (index $.UserMap .UserId).HasPermissionManageLogs}}perm-unavailable perm-nochange{{ else }}{{if not .HasPermissionManageLogs}}perm-notgranted{{else}}perm-granted{{end}}{{end}}" title="Manage System Logs" onclick='changeApiPermission("{{ .PublicId }}","PERM_MANAGE_LOGS", "perm_logs_{{ .PublicId }}");'></i>
+						<i id="perm_logs_{{ .PublicId }}" class="bi bi-card-list {{if not (index $.UserMap .UserId).HasPermissionManageLogs}}perm-unavailable perm-nochange{{ else }}{{if not .HasPermissionManageLogs}}perm-notgranted{{else}}perm-granted{{end}}{{end}}" title="Beheer Systeem Logboeken" onclick='changeApiPermission("{{ .PublicId }}","PERM_MANAGE_LOGS", "perm_logs_{{ .PublicId }}");'></i>
 						
-						<i id="perm_api_{{ .PublicId }}" class="bi bi-sliders2 {{if not .HasPermissionApiMod}}perm-notgranted{{else}}perm-granted{{end}}" title="Manage API Keys" onclick='changeApiPermission("{{ .PublicId }}","PERM_API_MOD", "perm_api_{{ .PublicId }}");'></i>
+						<i id="perm_api_{{ .PublicId }}" class="bi bi-sliders2 {{if not .HasPermissionApiMod}}perm-notgranted{{else}}perm-granted{{end}}" title="Beheer API rechten" onclick='changeApiPermission("{{ .PublicId }}","PERM_API_MOD", "perm_api_{{ .PublicId }}");'></i>
             				</td>
 {{ if $.ActiveUser.HasPermissionManageApi }}
             			 <td>{{(index $.UserMap .UserId).Name}}</td>
 {{ end }}
-                                <td><button id="delete-{{ .PublicId }}" type="button" class="btn btn-outline-danger btn-sm" onclick="deleteApiKey('{{ .PublicId }}')" title="Delete"><i class="bi bi-trash3"></i></button></td>
+                                <td><button id="delete-{{ .PublicId }}" type="button" class="btn btn-outline-danger btn-sm" onclick="deleteApiKey('{{ .PublicId }}')" title="Verwijder"><i class="bi bi-trash3"></i></button></td>
                             </tr>
 {{ end }}
                         </tbody>
@@ -66,7 +66,7 @@
                 </div>
             </div>
         </div>
-	<div id="toastnotification" class="toastnotification" data-default="API key copied to clipboard">Toast Text</div>
+	<div id="toastnotification" class="toastnotification" data-default="API sleutel gekopieerd naar clipboard">Toast Text</div>
     </div>
 </div>
 <script src="./js/min/admin.min.{{ template "js_admin_version"}}.js"></script>

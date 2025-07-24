@@ -4,17 +4,17 @@
         <div class="col">
 		<div class="card" style="width: 18rem;">
 		  <div class="card-body">
-		    <h2 class="card-title">Error</h2>
+		    <h2 class="card-title">Fout</h2>
 		    <p class="card-text">
 		    <br>
 {{ if eq .ErrorId 0 }}
-		    Sorry, this file cannot be found.<br><br>Either the link has expired or it has been downloaded too many times.
+		    Dit bestand kan niet gevonden worden.<br><br>Ofwel de link is verlopen of het bestand is te vaak gedownload.
 {{ end }}
 {{ if eq .ErrorId 1 }}
-		    This file is encrypted and no key has been passed.<br><br>Please contact the uploader to give you the correct link, including the value after the hash.
+		    Dit bestand is versleuteld en er is geen sleutel meegegeven.<br><br>Neem contact op met de uploader om de juiste link te ontvangen. Gebruik de link inclusief de waarde na de hash.
 {{ end }}
 {{ if eq .ErrorId 2 }}
-		    This file is encrypted and an incorrect key has been passed.<br><br>If this file is end-to-end encrypted, please contact the uploader to give you the correct link, including the value after the hash.
+		    Dit bestand is versleuteld en er is geen sleutel meegegeven.<br><br>Neem contact op met de uploader om de juiste link te ontvangen. Gebruik de link inclusief de waarde na de hash.
 {{ end }}
 <br>&nbsp;
 		    </p>

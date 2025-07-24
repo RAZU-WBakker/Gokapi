@@ -5,21 +5,21 @@
 {{ if eq .ErrorProvidedName "access_denied"}}
 		<div class="card" style="width: 18rem;">
 		  <div class="card-body">
-		    <h2 class="card-title">Access denied</h2>
+		    <h2 class="card-title">Toegang geweigerd</h2>
 		    <br>
-		    <p class="card-text">The request was denied by the user or authentication provider.</p><br>
+		    <p class="card-text">De aanvraag werd geweigerd door de gebruiker of de authenticatie provider.</p><br>
 {{ else }}
 		<div class="card" style="width: 65%;">
 		  <div class="card-body">
-		    <h2 class="card-title">OIDC Provider Error {{.ErrorProvidedName}}</h2>
+		    <h2 class="card-title">OIDC Provider Fout {{.ErrorProvidedName}}</h2>
 		    <br>
-		    <p class="card-text"><b>Login with OAuth provider was not sucessful, the following error was raised:</b></p>
+		    <p class="card-text"><b>Login met OAuth provider was niet succesvol, de volgende fout werd meegegeven:</b></p>
 {{ if .ErrorProvidedMessage }}
 		 <p class="text-monospace">{{ .ErrorProvidedMessage }}</blockquote></p>
 {{ end}}
 		 <p class="text-monospace">{{ .ErrorGenericMessage }}</blockquote></p><br>
 {{ end }}
-		    <a href="./login?consent=true" class="card-link">Try again</a>
+		    <a href="./login?consent=true" class="card-link">Probeer opnieuw</a>
 		  </div>
 		</div>
 	    </div>

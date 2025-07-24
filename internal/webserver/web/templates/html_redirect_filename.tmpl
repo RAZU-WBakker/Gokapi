@@ -2,12 +2,12 @@
 <html><head>
 
        {{ if .PasswordRequired }}
-          <title>{{.PublicName}}: Password required</title>
+          <title>{{.PublicName}}: Wachtwoord vereist</title>
 	  <meta name="title" content="{{.PublicName}}">
-    	  <meta name="description" content="Password required">
+    	  <meta name="description" content="Wachtwoord vereist">
     	  
     	  <meta property="og:title" content="{{.PublicName}}"/>
-  	  <meta property="og:description" content="Password required"/>
+  	  <meta property="og:description" content="Wachtwoord vereist"/>
        {{ else }}
           <title>{{.PublicName}}: {{.Name}}</title>
 	  <meta name="title" content="{{.PublicName}}: {{.Name}}">
